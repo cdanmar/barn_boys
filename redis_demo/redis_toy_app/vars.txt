@@ -1,0 +1,36 @@
+# ACR hosting the application image.
+ACR_DOMAIN_NAME=acrcmfgnplend.azurecr.io
+# Tag of the image to pull in
+ACR_IMAGE_TAG=v1
+# Name of the repository to pull the image from
+ACR_REPOSITORY_NAME=redistoyapp
+# Name of the AKS cluster to deploy the image to
+AKS_NAME=AKS-NP1-Lend-M01
+# Name of the resource group hosting the AKS cluster
+AKS_RG_NAME=RG-CMFG-M01-Lending-Stargate
+# A short name for your Portfolio Titan-Atlas-AKS cluster used to generate names for various resources created during the deployment process. Must be 8 # characters or less.
+AKS_SHORT_NAME=RedisToyApp
+# The name of your Portfolio Titan-Atlas-AKS cluster service principal provided by Team Titan.
+AKS_SP_APP_NAME=SP-AKS-Lending-NP
+# This is will map to the host name of your cluster's certificate, with a dash instead of dots
+AKS_SSL_CERT_IDENTIFIER=
+# Name of your application used in application manifests
+APP_NAME=redistoyapp
+# Name of the Azure SQL Server database
+DB_NAME=
+# Name of the Azure SQL Server resource
+DB_SERVER_NAME=
+# Dynamically built variable composed of the variables above
+REPOSITORY_IMAGE_NAME=$(ACR_DOMAIN_NAME)/$(ACR_REPOSITORY_NAME):$(ACR_IMAGE_TAG)
+
+# Name of the key vault use to store secrets for your application
+K8S_APP_KV_NAME=
+# Name of the user-assigned managed identity use to provide your application with access to Azure resources and services
+K8S_APP_MSI_NAME=
+# Name of your application used for deployment, service, and pods in your Kubernetes cluster
+K8S_APP_NAME=redistoyapp
+# Name of the resource group where your application is deployed
+K8S_APP_RG_NAME=RG-CMFG-NC1-NP1-LLC
+# Ingress route path to navigate to your application as an API
+K8S_APP_ROUTE=/redistoyapp
+K8S_NAMESPACE=demo-redis

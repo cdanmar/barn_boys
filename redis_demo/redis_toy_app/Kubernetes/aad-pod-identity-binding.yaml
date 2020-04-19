@@ -1,0 +1,8 @@
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: __K8S_APP_AAD_POD_IDENTITY_BINDING__
+  namespace: __K8S_NAMESPACE__
+spec:
+  AzureIdentity: __K8S_APP_MSI_NAME__
+  Selector: __K8S_APP_AAD_POD_IDENTITY_SELECTOR__

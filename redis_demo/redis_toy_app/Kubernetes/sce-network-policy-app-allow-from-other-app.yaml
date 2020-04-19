@@ -1,0 +1,47 @@
+# LIMIT traffic from another application
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: __K8S_APP_NAME__-app-allow
+  namespace: __K8S_NAMESPACE__
+spec:
+  podSelector:
+    matchLabels:
+      app: __K8S_APP_NAME__
+  ingress:
+  - from:
+      - podSelector:
+          matchLabels:
+            app: __K8S_OTHER_APP_NAME__
+---
+# LIMIT traffic from another application
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow_connection_to_redis
+  namespace: test-redis
+spec:
+  podSelector:
+    matchLabels:
+      app: redis
+  ingress:
+  - from:
+      - podSelector:
+          matchLabels:
+            app: redistoyapp2
+---
+# LIMIT traffic from another application
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow_redis_to_toyapp
+  namespace: test-redis
+spec:
+  podSelector:
+    matchLabels:
+      app: redistoyapp2
+  ingress:
+  - from:
+      - podSelector:
+          matchLabels:
+            app: redis

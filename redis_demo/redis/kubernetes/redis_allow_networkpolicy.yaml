@@ -1,0 +1,15 @@
+# LIMIT traffic from another application
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow_connection_to_redis
+  namespace: demo-redis
+spec:
+  podSelector:
+    matchLabels:
+      app: redis
+  ingress:
+  - from:
+      - podSelector:
+          matchLabels:
+            app: redistoyapp

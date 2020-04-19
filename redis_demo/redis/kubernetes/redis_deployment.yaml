@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: test-redis
+  labels:
+    app: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+        # # Uncomment the following if you use AAD Pod Identity
+        # aadpodidbinding: __K8S_APP_AAD_POD_IDENTITY_SELECTOR__
+    spec:
+      containers:
+      - name: redis
+        image: acrcmfgnplend.azurecr.io/stargate-redis:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 1000Mi
+        ports:
+        - containerPort: 6379
+          name: redis
+        readinessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 5
+            periodSeconds: 10
+        livenessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 60
+            periodSeconds: 30
+        env:
+          - name: ALLOW_EMPTY_PASSWORD
+            value: "yes"
+        # envFrom:
+        #   - configMapRef:
+        #       name: redis-configmap

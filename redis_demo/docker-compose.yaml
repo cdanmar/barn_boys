@@ -1,0 +1,23 @@
+version: '3.4'
+services:
+  redis:
+    build: ./redis
+    image: redis
+    container_name: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "6379:6379"
+
+  redis-toy-app:
+    build: ./redis_toy_app
+    image: redis-toy-app
+    container_name: redis-toy-app
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "localhost:8080"]
+      interval: "10s"
+      timeout: "3s"
+      start_period: "5s"
+      retries: 3

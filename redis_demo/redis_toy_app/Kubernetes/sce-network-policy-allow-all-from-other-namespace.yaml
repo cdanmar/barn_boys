@@ -1,0 +1,15 @@
+# ALLOW all traffic from a matched namespace
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: __K8S_APP_NAME__-allow-other-namespace
+  namespace: __K8S_NAMESPACE__
+spec:
+  podSelector:
+    matchLabels:
+      app: __K8S_APP_NAME__
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: __K8S_OTHER_NAMESPACE__

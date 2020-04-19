@@ -1,0 +1,6 @@
+﻿apiVersion: v1
+kind: Namespace
+metadata:
+  name: __K8S_NAMESPACE__
+  labels:
+    name: __K8S_NAMESPACE__
