@@ -23,6 +23,7 @@ Basic build without version:
 This will create an image without a tag. When pushed to the registry, it will be tagged with latest.
 
 A couple things to note about this command:
+
 1) You need to have Docker Desktop installed and running in your machine
 2) The ```.``` at the end denotes context. This means that this command must be run in the same directory as the Dockerfile
 3) If you don't specify a version, building a new container will replace the existing one
