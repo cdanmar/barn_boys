@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cheese
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - stilton.cdanmar.com
+    secretName: stilton-tls
+  - hosts:
+    - cheddar.cdanmar.com
+    secretName: cheddar-tls
+  - hosts:
+    - wensleydale.cdanmar.com
+    secretName: wensleydale-tls
+  rules:
+  - host: stilton.cdanmar.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: stilton
+          servicePort: http
+  - host: cheddar.cdanmar.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: cheddar
+          servicePort: http
+  - host: wensleydale.cdanmar.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: wensleydale
+          servicePort: http
+  - host: wensleydale.cdanmar.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: wensleydale
+          servicePort: http

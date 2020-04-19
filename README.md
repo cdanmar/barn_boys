@@ -1,0 +1,1 @@
+For Building and puching to the ACR, see "build_and_push.md"
