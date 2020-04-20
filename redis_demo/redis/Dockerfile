@@ -1,1 +1,1 @@
-FROM bitnami/redis:5.0-debian-10
+FROM redis:rc-alpine3.11
