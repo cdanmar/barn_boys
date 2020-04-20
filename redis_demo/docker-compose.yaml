@@ -15,9 +15,3 @@ services:
     container_name: redis-toy-app
     ports:
       - "8080:8080"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "localhost:8080"]
-      interval: "10s"
-      timeout: "3s"
-      start_period: "5s"
-      retries: 3
