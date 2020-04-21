@@ -1,0 +1,12 @@
+version: '3.4'
+services:    
+  mqtt:
+    build:
+      context: ./mosquitto
+      dockerfile: Dockerfile
+    ports:
+        - 1883:1883
+        - 9001:9001
+    volumes:
+    - ./log/mqtt:/mqtt/log
+    - ./data/mqtt:/mqtt/data/
