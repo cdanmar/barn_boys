@@ -1,0 +1,35 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: homeassistant
+  namespace: smartnet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+        version: v0.0.1
+    spec:
+      containers:
+      - name: homeassistant
+        image: us.gcr.io/barnboys/homeassistant:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1200Mi
+          limits:
+            cpu: 200m
+            memory: 1500Mi
+        ports:
+        - containerPort: 8123
+        volumeMounts:
+          - name: homeassistant-volume
+            mountPath: /config 
+      volumes:
+        - name: homeassistant-volume
+          persistentVolumeClaim:
+            claimName: homeassistant-pvc
