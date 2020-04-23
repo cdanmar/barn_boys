@@ -1,0 +1,23 @@
+version: '3.4'
+services:
+  homeassistant:
+    container_name: home-assistant
+    build:
+      context: ./homeassistant
+      dockerfile: Dockerfile
+    ports:
+        - 8123:8123
+    volumes:
+      - ./homeassistant/.data:/config
+
+  mqtt:
+    container_name: mosquitto
+    build:
+      context: ./mosquitto
+      dockerfile: Dockerfile
+    ports:
+        - 1883:1883
+        - 9001:9001
+    volumes:
+    - ./mosquitto/.log/mqtt:/mqtt/log
+    - ./mosquitto/.data/mqtt:/mqtt/data/

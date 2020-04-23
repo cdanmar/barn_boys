@@ -1,0 +1,6 @@
+log/**
+data/**
+homeassistant/.data
+mosquitto/.data
+mosquitto/.log
+*.txt
